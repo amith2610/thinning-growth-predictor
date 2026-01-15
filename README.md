@@ -4,7 +4,7 @@ A comprehensive Python pipeline for evaluating and comparing different thinning 
 
 ## Overview
 
-This project integrates thinning analysis with the PTAEDA4 individual tree growth model to predict long-term stand development under various silvicultural treatments. The pipeline supports both systematic row-removal patterns and advanced competition-based thinning strategies, enabling forestry researchers and managers to make data-driven decisions about plantation management.
+This project integrates thinning analysis with the PTAEDA4 individual tree growth model to predict long-term stand development under various silvicultural treatments. The pipeline supports both systematic row-removal patterns and advanced competition-based thinning strategies, enabling forestry researchers and managers to make data driven decisions about plantation management.
 
 ## Key Features
 
