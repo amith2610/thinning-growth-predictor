@@ -1,0 +1,135 @@
+
+# This config file controls the entire pipeline from thinning to growth prediction
+
+# INPUT DATA
+
+input:
+  # Path to stand data CSV file
+  stand_file: "/Users/amithreddy/Desktop/G&Y_model_python/Divided_Stand_data-prethin/csv_files/sparse_sparse_stand.csv_with_feet.csv"
+
+  # Column names in CSV
+  columns:
+    row: "NL"              # Row number column
+    x_coord: "X1"          # X coordinate (feet)
+    y_coord: "Y1"          # Y coordinate (feet)
+    dbh: "pDBH_RF"         # Diameter at breast height (inches)
+    height: "Z_ft"         # Height (feet)
+    volume: "pStV_RF"      # Stem volume
+
+# ----------------------------------------------------------------------------
+# PRIMARY THINNING STRATEGY
+
+primary_thinning:
+  # STRATEGY OPTIONS (choose one):
+  # 
+  # Systematic Row Removal:
+  #   "3-row"  - Remove every 3rd row (~33% removal)
+  #   "4-row"  - Remove every 4th row (~25% removal)
+  #   "5-row"  - Remove every 5th row (~20% removal)
+  #
+  # Variable Thinning (Optimized):
+  #   "variable-3_row_eqv"  - Removes ~R/3 rows, gaps 2-4, minimizes Q4 loss
+  #   "variable-4_row_eqv"  - Removes ~R/4 rows, gaps 3-5, minimizes Q4 loss
+  #   "variable-5_row_eqv"  - Removes ~R/5 rows, gaps 3-4, minimizes Q4 loss
+  
+  strategy: "4-row"
+  
+  # START ROW
+  # For "3-row": can be 1, 2, or 3
+  # For "4-row": can be 1, 2, 3, or 4
+  # For "5-row": can be 1, 2, 3, 4, or 5
+  start_row: 4
+
+# ----------------------------------------------------------------------------
+# SECONDARY THINNING 
+# ----------------------------------------------------------------------------
+secondary_thinning:
+  # Enable secondary thinning (true/false)
+  enabled: true
+  
+  # STRATEGY OPTIONS (choose one):
+  #
+  # "Thin from Below"
+  #   - Removes smallest trees from residual stand
+  #   - Stand-wide budget based on removal_fraction
+  #   
+  #
+  # "Thin from Above-1 (Neighbors)"
+  #   - Removes competitors near large anchor trees
+  #   - Per-row quotas, protects anchors (top anchor_fraction)
+  #   - Uses 1D distance within rows
+  #   
+  #
+  # "Thin from Above-2 (Anchor)"
+  #   - Removes competitors near large anchor trees
+  #   - Uses 2D spatial distance across all rows
+  #   - Finds k=5 nearest neighbors per anchor
+  #   
+  #
+  # "Thin by CI_Z (Height Competition)"
+  #   - Removes trees with HIGHEST CI_Z values
+  #   - Targets trees experiencing most height competition
+  #   
+  #
+  # "Thin by CI1 (Distance-Dependent Competition)"
+  #   - Calculates CI1 based on PTAEDA4 model
+  #   - Removes trees with HIGHEST CI1 values
+  #   - Uses PRF=2.708, BAF=10
+  #   
+  
+  strategy: "Thin by CI1 (Distance-Dependent Competition)"
+  
+  # REMOVAL FRACTION (0.10 to 0.60)
+  # Fraction of residual trees to remove in secondary thinning
+  # Examples:
+  #   0.10 = 10% additional removal (light)
+  #   0.25 = 25% additional removal (moderate)
+  #   0.33 = 33% additional removal (moderate-heavy)
+  #   0.50 = 50% additional removal (heavy)
+  removal_fraction: 0.20
+  
+  # ANCHOR FRACTION (0.05 to 0.25)
+  # Fraction of largest trees to protect as anchors
+  # Only used for "Thin from Above" strategies
+  # Examples:
+  #   0.05 = Protect top 5% (few large trees)
+  #   0.10 = Protect top 10% (standard)
+  #   0.15 = Protect top 15% (more anchors)
+  #   0.25 = Protect top 25% (many anchors)
+  anchor_fraction: 0.10
+
+# STAND AGE PARAMETERS
+
+stand_parameters:
+  # Current stand age
+  current_age: 24
+  
+  # Age when thinning occurs
+
+  thinning_age: 24
+  
+  # Project growth to this age
+
+  projection_age: 29
+
+# ----------------------------------------------------------------------------
+# GROWTH MODEL PARAMETERS
+# ----------------------------------------------------------------------------
+growth_model:
+  # Basal Area Factor
+  basal_area_factor: 10
+
+
+# OUTPUT SETTINGS
+
+output:
+  # Main output directory
+  directory: "results"
+  
+  # Save intermediate thinning results (true/false)
+  save_intermediate: true
+  
+  # Create spatial visualization maps (true/false)
+  create_maps: true
+  
+  verbose: true

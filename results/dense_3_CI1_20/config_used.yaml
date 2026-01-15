@@ -1,0 +1,28 @@
+growth_model:
+  basal_area_factor: 10
+input:
+  columns:
+    dbh: pDBH_RF
+    height: Z_ft
+    row: NL
+    volume: pStV_RF
+    x_coord: X1
+    y_coord: Y1
+  stand_file: /Users/amithreddy/Desktop/G&Y_model_python/Divided_Stand_data-prethin/csv_files/dense_stand.csv_with_feet.csv
+output:
+  create_maps: true
+  directory: results
+  save_intermediate: true
+  verbose: true
+primary_thinning:
+  start_row: 3
+  strategy: 3-row
+secondary_thinning:
+  anchor_fraction: 0.1
+  enabled: true
+  removal_fraction: 0.2
+  strategy: Thin by CI1 (Distance-Dependent Competition)
+stand_parameters:
+  current_age: 24
+  projection_age: 29
+  thinning_age: 24

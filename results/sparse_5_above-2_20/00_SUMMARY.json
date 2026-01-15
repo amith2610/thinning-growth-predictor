@@ -1,0 +1,78 @@
+{
+  "run_id": "20260109_141229",
+  "config_file": "pipeline_config.yaml",
+  "configuration": {
+    "input": {
+      "stand_file": "/Users/amithreddy/Desktop/G&Y_model_python/Divided_Stand_data-prethin/csv_files/sparse_sparse_stand.csv_with_feet.csv",
+      "columns": {
+        "row": "NL",
+        "x_coord": "X1",
+        "y_coord": "Y1",
+        "dbh": "pDBH_RF",
+        "height": "Z_ft",
+        "volume": "pStV_RF"
+      }
+    },
+    "primary_thinning": {
+      "strategy": "5-row",
+      "start_row": 4
+    },
+    "secondary_thinning": {
+      "enabled": true,
+      "strategy": "Thin from Above-2 (Anchor)",
+      "removal_fraction": 0.2,
+      "anchor_fraction": 0.1
+    },
+    "stand_parameters": {
+      "current_age": 24,
+      "thinning_age": 24,
+      "projection_age": 29
+    },
+    "growth_model": {
+      "basal_area_factor": 10
+    },
+    "output": {
+      "directory": "results",
+      "save_intermediate": true,
+      "create_maps": true,
+      "verbose": true
+    }
+  },
+  "thinning_results": {
+    "primary_strategy": "5-row",
+    "secondary_strategy": "Thin from Above-2 (Anchor)",
+    "trees_before": 968,
+    "trees_after": 616,
+    "trees_removed": 352,
+    "pct_trees_removed": 36.36363636363637,
+    "ba_before_sqft": 540.5673841892998,
+    "ba_after_sqft": 339.646782117602,
+    "ba_removed_sqft": 200.92060207169777,
+    "ba_removal_pct": 37.16846556937996,
+    "thinning_intensity": 0.3716846556937996,
+    "mean_dbh_before": 10.101594968559462,
+    "mean_dbh_after": 10.035559372799728,
+    "qmd_before": 0.7472866788327267,
+    "qmd_after": 0.7425460566825525
+  },
+  "growth_projection": {
+    "projection_years": 5,
+    "start_age": 24,
+    "final_age": 29,
+    "final_survival_rate": 100.0,
+    "mean_dbh_final": 10.060873376623375,
+    "mean_height_final": 74.31450324675325,
+    "mean_dbh_growth": 0.02531400382364852,
+    "mean_height_growth": 3.4813753622727277
+  },
+  "output_files": {
+    "config": "config_used.yaml",
+    "primary_map": "01_primary_thinning_map.png",
+    "secondary_map": "02_secondary_thinning_map.png",
+    "thinning_full": "03_thinning_results_full.csv",
+    "thinning_kept": "03_thinning_results_kept.csv",
+    "ptaeda_input": "04_ptaeda_input.csv",
+    "growth_projections": "05_growth_projections.csv",
+    "summary": "00_SUMMARY.json"
+  }
+}

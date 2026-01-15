@@ -1,0 +1,80 @@
+{
+  "run_id": "20260115_175143",
+  "config_file": "pipeline_config.yaml",
+  "configuration": {
+    "input": {
+      "stand_file": "/Users/amithreddy/Desktop/G&Y_model_python/Divided_Stand_data-prethin/csv_files/sparse_sparse_stand.csv_with_feet.csv",
+      "columns": {
+        "row": "NL",
+        "x_coord": "X1",
+        "y_coord": "Y1",
+        "dbh": "pDBH_RF",
+        "height": "Z_ft",
+        "volume": "pStV_RF"
+      }
+    },
+    "primary_thinning": {
+      "strategy": "4-row",
+      "start_row": 4
+    },
+    "secondary_thinning": {
+      "enabled": true,
+      "strategy": "Thin by CI1 (Distance-Dependent Competition)",
+      "removal_fraction": 0.2,
+      "anchor_fraction": 0.1
+    },
+    "stand_parameters": {
+      "current_age": 24,
+      "thinning_age": 24,
+      "projection_age": 29
+    },
+    "growth_model": {
+      "basal_area_factor": 10
+    },
+    "output": {
+      "directory": "results",
+      "save_intermediate": true,
+      "create_maps": true,
+      "verbose": true
+    }
+  },
+  "thinning_results": {
+    "primary_strategy": "4-row",
+    "secondary_strategy": "Thin by CI1 (Distance-Dependent Competition)",
+    "trees_before": 968,
+    "trees_after": 582,
+    "trees_removed": 386,
+    "pct_trees_removed": 39.87603305785124,
+    "ba_before_sqft": 540.5673841892998,
+    "ba_after_sqft": 326.3963845895686,
+    "ba_removed_sqft": 214.1709995997312,
+    "ba_removal_pct": 39.61966738354515,
+    "thinning_intensity": 0.3961966738354515,
+    "mean_dbh_before": 10.101594968559462,
+    "mean_dbh_after": 10.12114835639027,
+    "qmd_before": 0.7472866788327267,
+    "qmd_after": 0.7488781811634162
+  },
+  "growth_projection": {
+    "projection_years": 5,
+    "start_age": 24,
+    "final_age": 29,
+    "final_survival_rate": 100.0,
+    "mean_dbh_final": 10.146431271477663,
+    "mean_height_final": 74.48655498281788,
+    "mean_dbh_growth": 0.025282915087393127,
+    "mean_height_growth": 3.6615116777319594,
+    "sum_final_dbh": 5905.223,
+    "sum_final_height": 43351.175
+  },
+  "output_files": {
+    "config": "config_used.yaml",
+    "primary_map": "01_primary_thinning_map.png",
+    "secondary_map": "02_secondary_thinning_map.png",
+    "thinning_full": "03_thinning_results_full.csv",
+    "thinning_kept": "03_thinning_results_kept.csv",
+    "ptaeda_input": "04_ptaeda_input.csv",
+    "growth_projections": "05_growth_projections.csv",
+    "summary": "00_SUMMARY.json"
+  }
+}
